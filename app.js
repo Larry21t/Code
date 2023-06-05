@@ -1,5 +1,5 @@
 const nano = require('nano')('http://admin:admin@127.0.0.1:5984'); // Passen Sie die URL entsprechend an
-const db = nano.db.use('modul347'); // Passen Sie den Datenbanknamen an
+const db = nano.db.use('rezepte'); // Passen Sie den Datenbanknamen an
 
 // Beispieloperationen mit der CouchDB
 // Hier können Sie Ihre eigenen Funktionen und Logik einfügen
