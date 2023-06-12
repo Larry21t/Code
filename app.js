@@ -23,6 +23,29 @@ app.get('/', function(req, res) {
     });
 });
 
+app.post('/search', function(req, res) {
+    const searchTerm = req.body.searchTerm;
+
+    const query = {
+        selector: {
+            ingredients: {
+                $regex: searchTerm,
+                $options: 'i'
+            }
+        }
+    };
+
+    couch.find(query, function(err, result) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        const recipes = result.docs;
+        res.render('index', { recipes });
+    });
+});
+
 app.listen(3000, function() {
     console.log('Server is started on Port 3000');
 });

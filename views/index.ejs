@@ -50,10 +50,10 @@
 </head>
 
 <body>
-    <div class="search-container">
-        <input type="text" class="search-input" placeholder="Suchbegriff eingeben">
-        <button class="search-button">Suchen</button>
-    </div>
+    <form class="search-container" action="/search" method="POST">
+        <input class="search-input" type="text" name="searchTerm" placeholder="Zutaten suchen">
+        <button class="search-button" type="submit">Suchen</button>
+      </form>
 
     <table>
         <thead>
@@ -103,12 +103,6 @@
             <% }); %>
         </tbody>
     </table>
-
-    <script>
-        document.getElementById('search-button').addEventListener('click', function() {
-            
-        });
-    </script>
 </body>
 
 </html>
