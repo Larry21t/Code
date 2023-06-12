@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     couch.list({ include_docs: true }, (err, body) => {
         if (err) {
             console.error(err);
@@ -23,30 +23,24 @@ app.get('/', function(req, res) {
     });
 });
 
-app.post('/search', function(req, res) {
-    const searchTerm = req.body.searchTerm;
-
-    const query = {
+app.post('/search', function (req, res) {
+    var searchTerm = req.body.searchTerm;
+    couch.find({
         selector: {
-            ingredients: {
-                $regex: searchTerm,
-                $options: 'i'
-            }
+            Zutaten: { $elemMatch: { $regex: searchTerm } }
         }
-    };
-
-    couch.find(query, function(err, result) {
+    }, function (err, result) {
         if (err) {
-            console.error(err);
+            console.error('Fehler bei der Suche:', err);
+            res.sendStatus(500);
             return;
         }
-
-        const recipes = result.docs;
+        var recipes = result.docs;
         res.render('index', { recipes });
     });
 });
 
-app.listen(3000, function() {
+app.listen(3000, function () {
     console.log('Server is started on Port 3000');
 });
 
