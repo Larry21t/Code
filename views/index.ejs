@@ -1,1 +1,83 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezepte</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Rezeptname</th>
+                <th>Rezeptkategorie</th>
+                <th>Zutaten</th>
+                <th>Anleitung</th>
+                <th>Bild</th>
+                <th>Bewertung</th>
+                <th>Kommentar</th>
+                <th>Herkunftsland</th>
+                <th>Schwierigkeit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% recipes.forEach(function(recipe) { %>
+                <tr>
+                    <td>
+                        <%= recipe.Rezeptname %>
+                    </td>
+                    <td>
+                        <%= recipe.Rezeptkategorie %>
+                    </td>
+                    <td>
+                        <%= recipe.Zutaten %>
+                    </td>
+                    <td>
+                        <%= recipe.Anleitung %>
+                    </td>
+                    <td>
+                        <img src="<%= recipe.Bild %>" alt="Bild">
+                    </td>
+                    <td>
+                        <%= recipe.Bewertung %>
+                    </td>
+                    <td>
+                        <%= recipe.Kommentar %>
+                    </td>
+                    <td>
+                        <%= recipe.Herkunftsland %>
+                    </td>
+                    <td>
+                        <%= recipe.Schwierigkeit %>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+
+</html>
