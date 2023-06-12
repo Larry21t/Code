@@ -53,7 +53,7 @@
     <form class="search-container" action="/search" method="POST">
         <input class="search-input" type="text" name="searchTerm" placeholder="Zutaten suchen">
         <button class="search-button" type="submit">Suchen</button>
-      </form>
+    </form>
 
     <table>
         <thead>
@@ -85,7 +85,11 @@
                         <%= recipe.Anleitung %>
                     </td>
                     <td>
-                        <img src="<%= recipe.Bild %>" alt="Bild">
+                        <% if (recipe.Bild) { %>
+                            <img src="<%= recipe.Bild %>" alt="Bild">
+                        <% } else { %>
+                            <span>-</span>
+                        <% } %>
                     </td>
                     <td>
                         <%= recipe.Bewertung %>
